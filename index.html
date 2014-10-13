@@ -88,7 +88,7 @@ Flask-Dance even comes with a mixin to help you define your database model,
 and it works with User models, too!</p>
 
 <div class="highlight highlight-python"><pre><span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
-<span class="kn">from</span> <span class="nn">flask_dance.models</span> <span class="kn">import</span> <span class="n">OAuthMixin</span>
+<span class="kn">from</span> <span class="nn">flask_dance.models</span> <span class="kn">import</span> <span class="n">OAuthConsumerMixin</span>
 
 <span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">()</span>
 
@@ -96,7 +96,7 @@ and it works with User models, too!</p>
     <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="c"># ... other columns as needed</span>
 
-<span class="k">class</span> <span class="nc">OAuth</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">,</span> <span class="n">OAuthMixin</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">OAuth</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">,</span> <span class="n">OAuthConsumerMixin</span><span class="p">):</span>
     <span class="n">user_id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
     <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">relationship</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
 
@@ -117,6 +117,6 @@ use other token storage systems.</a></p>
       <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
     </footer>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+
   </body>
 </html>
