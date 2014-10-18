@@ -1,32 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Flask-Dance by singingwolfboy</title>
+    <meta name="description" content="Flask-Dance : Doing the OAuth dance with style using Flask, requests, and oauthlib.">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <title>Flask-Dance</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Flask-Dance</h1>
-        <p>Doing the OAuth dance with style using Flask, requests, and oauthlib.</p>
-        <p class="view"><a href="https://github.com/singingwolfboy/flask-dance">View the Project on GitHub <small>singingwolfboy/flask-dance</small></a></p>
-        <ul>
-          <li><a href="https://github.com/singingwolfboy/flask-dance/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/singingwolfboy/flask-dance/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/singingwolfboy/flask-dance">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/singingwolfboy/flask-dance">View on GitHub</a>
+
+          <h1 id="project_title">Flask-Dance</h1>
+          <h2 id="project_tagline">Doing the OAuth dance with style using Flask, requests, and oauthlib.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/singingwolfboy/flask-dance/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/singingwolfboy/flask-dance/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <h1>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
 
@@ -50,6 +54,7 @@ example, to authenticate with Github, just do the following:</p>
 <span class="kn">from</span> <span class="nn">flask_dance.contrib.github</span> <span class="kn">import</span> <span class="n">make_github_blueprint</span><span class="p">,</span> <span class="n">github</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">secret_key</span> <span class="o">=</span> <span class="s">"supersekrit"</span>
 <span class="n">blueprint</span> <span class="o">=</span> <span class="n">make_github_blueprint</span><span class="p">(</span>
     <span class="n">client_id</span><span class="o">=</span><span class="s">"my-key-here"</span><span class="p">,</span>
     <span class="n">client_secret</span><span class="o">=</span><span class="s">"my-secret-here"</span><span class="p">,</span>
@@ -64,7 +69,16 @@ example, to authenticate with Github, just do the following:</p>
     <span class="n">resp</span> <span class="o">=</span> <span class="n">github</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/user"</span><span class="p">)</span>
     <span class="k">assert</span> <span class="n">resp</span><span class="o">.</span><span class="n">ok</span>
     <span class="k">return</span> <span class="s">"You are @{login} on Github"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">login</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s">"login"</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
+
+<p><strong>NOTE</strong>: For this example to work, you must first <a href="https://github.com/settings/applications/new">register an application on Github</a>
+to get a <code>client_id</code> and <code>client_secret</code>. The application's authorization callback must be
+<code>http://localhost:5000/login/github/authorized</code>. You'll also need to set the
+<a href="http://oauthlib.readthedocs.org/en/latest/oauth2/security.html#envvar-OAUTHLIB_INSECURE_TRANSPORT"><code>OAUTHLIB_INSECURE_TRANSPORT</code></a> environment variable, so that oauthlib
+allows you to use HTTP rather than HTTPS.</p>
 
 <p>The <code>github</code> object is a <a href="http://flask.pocoo.org/docs/latest/quickstart/#context-locals">context local</a>, just like <code>flask.request</code>. That means
 that you can import it in any Python file you want, and use it in the context
@@ -112,11 +126,16 @@ writing a custom integration is easy. <a href="http://flask-dance.readthedocs.or
 use other token storage systems.</a></p>
       </section>
     </div>
-    <footer>
-      <p>Project maintained by <a href="https://github.com/singingwolfboy">singingwolfboy</a></p>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Flask-Dance maintained by <a href="https://github.com/singingwolfboy">singingwolfboy</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
 
   </body>
 </html>
