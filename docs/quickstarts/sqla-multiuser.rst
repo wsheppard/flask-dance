@@ -43,6 +43,7 @@ Create a file called ``multi.py`` with the following contents:
     class User(db.Model, UserMixin):
         id = db.Column(db.Integer, primary_key=True)
         username = db.Column(db.String(256), unique=True)
+        email = db.Column(db.String(256), unique=True)
         # ... other columns as needed
 
     class OAuth(OAuthConsumerMixin, db.Model):
